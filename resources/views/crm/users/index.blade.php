@@ -1,4 +1,5 @@
 @extends('crm.master')
+@section('title','Users')
 @section('content')
     <main role="main" class="main-content">
         <div class="container-fluid">
@@ -15,7 +16,9 @@
                                     </div>
                                     <div>
                                         <h5 class="card-title">Users Table</h5>
+                                        @hasrole('Admin')
                                         <a href="{{ route('crm.users.create') }}" style="float: right"  class="btn btn-primary mb-3">Create User</a>
+                                        @endhasrole
                                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                                     </div>
                                     <table class="table table-hover">
@@ -26,7 +29,9 @@
                                                 <th>Email</th>
                                                 <th>Date</th>
                                                 <th>Role</th>
+                                                @hasrole('Admin')
                                                 <th>Action</th>
+                                                @endhasrole
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -45,6 +50,7 @@
                                                             @endif
                                                     @endforeach
                                                 </td>
+                                                @hasrole('Admin')
                                                 <td class="d-flex gap:5">
                                                     <a href="{{ route('crm.users.edit',['user' => $user]) }}" class="btn btn-info mr-2">Edit</a>
                                                     <form action="{{ route('crm.users.destroy',['user' => $user]) }}" method="post">
@@ -53,10 +59,12 @@
                                                         <button class="btn btn-danger" type="submit">Delete</button>
                                                     </form>
                                                 </td>
+                                                @endhasrole
                                             </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
+                                    {{ $users->render('pagination::bootstrap-5') }}
                                 </div>
                             </div>
                         </div> <!-- simple table -->

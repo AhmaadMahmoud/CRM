@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -21,11 +22,12 @@ Route::get('/', function () {
 
 
 Route::name('crm.')->prefix('crm')->group(function(){
-    Route::middleware('auth')->group(function(){
+    Route::middleware(['auth'])->group(function(){
         Route::get('home', function () {
             return view('crm.index');
-        });
+        })->name('home');
         Route::resource('users',UserController::class);
+        Route::resource('clients',ClientController::class);
     });
     require __DIR__.'/auth.php';
 });

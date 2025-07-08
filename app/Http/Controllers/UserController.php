@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UserStoreRequest;
 use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 
@@ -13,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         return view('crm.users.index', [
-            'users' => User::with('roles')->get(),
+            'users' => User::with('roles')->paginate(5),
         ]);
     }
     public function create(){
@@ -23,15 +24,24 @@ class UserController extends Controller
 public function show(){
 
 }
-    public function store(UserStoreRequest $request){
+    public function store(UserStoreRequest $request)
+    {
         $users = $request->validated();
-        $user = User::create($users);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
         $role = Role::find($request->role);
-        if($role){
+        if ($role) {
             $user->assignRole($role->name);
         }
-        return to_route('crm.users.index')->with('success','User Added Successfully!');
+
+        return to_route('crm.users.index')->with('success', 'User Added Successfully!');
     }
+
 
     public function edit(User $user){
         $roles = Role::all();

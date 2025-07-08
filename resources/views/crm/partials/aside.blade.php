@@ -5,7 +5,7 @@
     <nav class="vertnav navbar navbar-light">
         <!-- nav bar -->
         <div class="w-100 mb-4 d-flex">
-            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+            <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ route('crm.home') }}">
                 <svg version="1.1" id="logo" class="navbar-brand-img brand-sm" xmlns="http://www.w3.org/2000/svg"
                     xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120"
                     xml:space="preserve">
@@ -19,7 +19,7 @@
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item dropdown">
-                <a href="#dashboard" data-toggle="collapse" aria-expanded="false" class="nav-link">
+                <a href="{{ route('crm.home') }}"  class="nav-link">
                     <i class="fe fe-home fe-16"></i>
                     <span class="ml-3 item-text">Dashboard</span><span class="sr-only">(current)</span>
                 </a>
@@ -37,22 +37,22 @@
                 </a>
             </li>
             <li class="nav-item w-100">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('crm.clients.index') }}">
                     <i class="fe fe-layers fe-16"></i>
-                    <span class="ml-3 item-text">Widgets</span>
+                    <span class="ml-3 item-text">Clients</span>
                 </a>
             </li>
             <li class="nav-item dropdown">
-                <a href="#forms" data-toggle="collapse" aria-expanded="false" class=" nav-link">
+                <a href="#" class=" nav-link">
                     <i class="fe fe-credit-card fe-16"></i>
-                    <span class="ml-3 item-text">Forms</span>
+                    <span class="ml-3 item-text">Tasks</span>
                 </a>
 
             </li>
             <li class="nav-item dropdown">
                 <a href="#tables" data-toggle="collapse" aria-expanded="false" class=" nav-link">
                     <i class="fe fe-grid fe-16"></i>
-                    <span class="ml-3 item-text">Tables</span>
+                    <span class="ml-3 item-text">Projects</span>
                 </a>
 
             </li>
@@ -64,6 +64,5 @@
 
             </li>
         </ul>
-
     </nav>
 </aside>
